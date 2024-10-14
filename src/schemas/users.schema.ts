@@ -1,9 +1,10 @@
 import { Prop, raw, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
+import { timestamp } from "rxjs";
 
 export type UserDocument = HydratedDocument<User>;
 
-@Schema()
+@Schema({timestamps:true})
 export class User {
     @Prop({ required: true, trim: true })
     name: string;
@@ -14,7 +15,7 @@ export class User {
     @Prop({ required: true, trim: true })
     username: string;
 
-    @Prop({ required: true, minlength: 6 })
+    @Prop({ required: true, minlength: 6 , select:false})
     password: string;
 
     @Prop({ trim: true })
@@ -22,6 +23,12 @@ export class User {
 
     @Prop({ type: Date })
     DOB: Date;
+    @Prop({ trim: true })
+    phoneNumber: string;
+
+    @Prop({ trim: true, enum: ['user','admin'],default: 'user' })
+    role: string;
+    
 
     @Prop(raw({
         allergies: { type: [String] },
