@@ -1,5 +1,6 @@
 import { BadRequestException, ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { User } from 'src/schemas/users.schema';
+import { Doctor } from 'src/schemas/doctors.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { LoginDto, RegisterDto } from 'src/DTO/auth.dto';
@@ -8,7 +9,7 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
-    constructor(@InjectModel(User.name) private userModel: Model<User>, private jwtStrategy: JwtService) { }
+    constructor(@InjectModel(User.name) private userModel: Model<User>, @InjectModel(Doctor.name) private doctorModel: Model<Doctor>, private jwtStrategy: JwtService) { }
 
     async registerUser(registerDto: RegisterDto) {
         try {
@@ -26,29 +27,38 @@ export class AuthService {
         } catch (error) {
             throw new BadRequestException(error.message || 'internal server error');
         }
-
-
     }
 
 
     async login(loginDto: LoginDto) {
         try {
             const { email, password } = loginDto;
-            const user = await this.userModel.findOne({ email: loginDto.email });
-            if (!user) { throw new BadRequestException('Signup and login again.'); }
-            const isPassMatch = await bcrypt.compare(password, user.password);
-            if (!isPassMatch) {
-                throw new UnauthorizedException('Invalid data provided, kindly verify the provided credentials.')
+            let user = await this.userModel.findOne({ email: email });
+            if (user) {
+                return await this.verifyPasswordAndGenerateToken(user, password, 'user');
             }
+            let doctor = await this.doctorModel.findOne({ email });
+            if (doctor) {
+                return await this.verifyPasswordAndGenerateToken(doctor, password, 'doctor');
+            }
+            if (!user && !doctor) { throw new BadRequestException('Signup and login again.'); }
 
-            const userId = { id: user._id };
-            return {
-                userName: user.username,
-                token: await this.jwtStrategy.signAsync(userId)
-            }
         } catch (error) {
             console.log(error.message);
             throw new BadRequestException(error.message || 'Internal Server Error');
         }
+    }
+
+    private async verifyPasswordAndGenerateToken(entity: any, password: string, role: string) {
+        const isPassMatch = await bcrypt.compare(password, entity.password);
+        if (!isPassMatch) {
+            throw new UnauthorizedException('Invalid data provided, kindly verify the provided credentials.');
+        }
+
+        const payload = { id: entity._id, role };
+        return {
+            userName: entity.username || entity.name,
+            token: await this.jwtStrategy.signAsync(payload)
+        };
     }
 }
