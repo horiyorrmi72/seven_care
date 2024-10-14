@@ -14,4 +14,5 @@ export class RegisterDto {
 export class LoginDto {
     readonly email: string;
     readonly password: string;
+    userType: 'doctor' | 'user' ;
 }
