@@ -33,6 +33,9 @@ export class Doctor {
 
     @Prop({ required: true, default: true }) 
     isFirstLogin: boolean;
+
+    @Prop()
+    appointments:string[];
 }
 
 export const DoctorSchema = SchemaFactory.createForClass(Doctor);
