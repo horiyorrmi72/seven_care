@@ -63,7 +63,7 @@ export class UserService {
                     username: 1,
                     address: 1,
                     DOB: 1,
-                    role: 1,
+                    // role: 0,
                     medical_history: 1,
                     appointments: {
                         $map: {
