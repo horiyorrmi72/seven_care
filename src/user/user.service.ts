@@ -11,7 +11,7 @@ export class UserService {
     constructor(@InjectModel(User.name) private userModel: Model<User>, @InjectModel(Appointments.name) private appointmentModel: Model<Appointments>) { }
 
     async getUsers(): Promise<User[]> {
-        const users = await this.userModel.find().select({ 'medical_history': false, 'appointments': false });
+        const users = await this.userModel.find().select({ 'medical_history': false, 'appointments': false, 'role':0 });
         return users;
 
     }
