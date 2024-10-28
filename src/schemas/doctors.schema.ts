@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { HydratedDocument } from "mongoose";
+import mongoose, { HydratedDocument, Types } from "mongoose";
+import { Appointments } from "./appointments.schema";
 
 export type DoctorDocument = HydratedDocument<Doctor>;
 @Schema({ timestamps: true })
@@ -31,11 +32,11 @@ export class Doctor {
     @Prop({ type: Boolean, required: true, default: false })
     active: boolean;
 
-    @Prop({ required: true, default: true }) 
+    @Prop({ required: true, default: true })
     isFirstLogin: boolean;
 
-    @Prop()
-    appointments:string[];
+    @Prop([{ type: mongoose.Schema.Types.ObjectId, ref:'Appointments' }])
+    appointments: Appointments[];
 }
 
 export const DoctorSchema = SchemaFactory.createForClass(Doctor);
