@@ -22,7 +22,9 @@ export class AuthService {
             const user = new this.userModel({ ...registerDto, password: hashPassword });
             await user.save();
             // console.log(user);
-            return user;
+            return {
+                message: 'Account Created Successfully!'
+            }
 
         } catch (error) {
             throw new BadRequestException(error.message || 'internal server error');
@@ -31,15 +33,17 @@ export class AuthService {
 
 
     async login(loginDto: LoginDto) {
+
         try {
             const { email, password } = loginDto;
-            let user = await this.userModel.findOne({ email: email });
+            // console.log(loginDto);
+            let user = await this.userModel.findOne({ email: email }).select({ password: true });
             if (user) {
-                return await this.verifyPasswordAndGenerateToken(user, password, 'user');
+                return await this.verifyPasswordAndGenerateToken(password, user, 'user');
             }
-            let doctor = await this.doctorModel.findOne({ email });
+            let doctor = await this.doctorModel.findOne({ email }).select({ password: true });
             if (doctor) {
-                return await this.verifyPasswordAndGenerateToken(doctor, password, 'doctor');
+                return await this.verifyPasswordAndGenerateToken(password, doctor, 'doctor');
             }
             if (!user && !doctor) { throw new BadRequestException('Signup and login again.'); }
 
@@ -49,8 +53,10 @@ export class AuthService {
         }
     }
 
-    private async verifyPasswordAndGenerateToken(entity: any, password: string, role: string) {
+    private async verifyPasswordAndGenerateToken(password: string, entity: any, role: string) {
+        console.log(password, entity, role);
         const isPassMatch = await bcrypt.compare(password, entity.password);
+        // console.log(isPassMatch)
         if (!isPassMatch) {
             throw new UnauthorizedException('Invalid data provided, kindly verify the provided credentials.');
         }
