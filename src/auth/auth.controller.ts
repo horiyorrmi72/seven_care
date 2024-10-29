@@ -13,7 +13,7 @@ export class AuthController {
 
     @Post('signin')
     signIn(@Body() loginDto: LoginDto) {
-        if (!loginDto) {
+        if (!loginDto.email || !loginDto.password) {
             throw new BadRequestException('all inputs are required.');
 
         }
