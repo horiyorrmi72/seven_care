@@ -13,9 +13,10 @@ import { AppointmentModule } from './appointment/appointment.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
+    envFilePath: `${process.env.NODE_ENV}.env`,
     isGlobal: true,
-  }), MongooseModule.forRoot('mongodb://127.0.0.1:27017/seven_care'), JwtModule.register({ global: true, secret: process.env.JWT_SECRET, signOptions: { expiresIn: '5400s' } }),
-    UserModule, AuthModule, DoctorModule, AppointmentModule, ],
+  }), MongooseModule.forRoot(process.env.db_uri), JwtModule.register({ global: true, secret: process.env.JWT_SECRET, signOptions: { expiresIn: '5400s' } }),
+    UserModule, AuthModule, DoctorModule, AppointmentModule,],
   controllers: [AppController,],
   providers: [AppService],
 })
