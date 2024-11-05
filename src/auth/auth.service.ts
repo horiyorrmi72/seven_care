@@ -9,7 +9,11 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
-    constructor(@InjectModel(User.name) private userModel: Model<User>, @InjectModel(Doctor.name) private doctorModel: Model<Doctor>, private jwtStrategy: JwtService) { }
+    constructor(
+        @InjectModel(User.name) private userModel: Model<User>,
+        @InjectModel(Doctor.name) private doctorModel: Model<Doctor>,
+        private jwtService: JwtService
+    ) { }
 
     async registerUser(registerDto: RegisterDto) {
         try {
@@ -18,53 +22,45 @@ export class AuthService {
                 throw new ConflictException(`User already exists`);
             }
             const { password } = registerDto;
-            const hashPassword = await bcrypt.hash(password, 12);
-            const user = new this.userModel({ ...registerDto, password: hashPassword });
+            const hashedPassword = await bcrypt.hash(password, 12);
+            const user = new this.userModel({ ...registerDto, password: hashedPassword });
             await user.save();
-            // console.log(user);
-            return {
-                message: 'Account Created Successfully!'
-            }
 
+            return { message: 'Account Created Successfully!' };
         } catch (error) {
-            throw new BadRequestException(error.message || 'internal server error');
+            throw new BadRequestException(error.message || 'Internal server error');
         }
     }
 
-
     async login(loginDto: LoginDto) {
-
         try {
             const { email, password } = loginDto;
-            // console.log(loginDto);
-            let user = await this.userModel.findOne({ email: email }).select({ password: true });
+            let user = await this.userModel.findOne({ email }).select({ password: true, role:true });
             if (user) {
-                return await this.verifyPasswordAndGenerateToken(password, user, 'user');
+                return await this.verifyPasswordAndGenerateToken(password, user);
             }
-            let doctor = await this.doctorModel.findOne({ email }).select({ password: true });
-            if (doctor) {
-                return await this.verifyPasswordAndGenerateToken(password, doctor, 'doctor');
-            }
-            if (!user && !doctor) { throw new BadRequestException('Signup and login again.'); }
 
+            let doctor = await this.doctorModel.findOne({ email }).select({password:true});
+            if (doctor) {
+                return await this.verifyPasswordAndGenerateToken(password, doctor);
+            }
+
+            throw new BadRequestException('Please sign up and log in again.');
         } catch (error) {
-            console.log(error.message);
             throw new BadRequestException(error.message || 'Internal Server Error');
         }
     }
 
-    private async verifyPasswordAndGenerateToken(password: string, entity: any, role: string) {
-        console.log(password, entity, role);
+    private async verifyPasswordAndGenerateToken(password: string, entity: any) {
         const isPassMatch = await bcrypt.compare(password, entity.password);
-        // console.log(isPassMatch)
         if (!isPassMatch) {
-            throw new UnauthorizedException('Invalid data provided, kindly verify the provided credentials.');
+            throw new UnauthorizedException('Invalid credentials, please verify and try again.');
         }
 
-        const payload = { id: entity._id, role };
+        const payload = { id: entity._id, role: entity.role };
         return {
             userName: entity.username || entity.name,
-            token: await this.jwtStrategy.signAsync(payload)
+            token: await this.jwtService.signAsync(payload),
         };
     }
 }
