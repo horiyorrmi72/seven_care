@@ -31,7 +31,7 @@ export class User {
     @Prop({ trim: true })
     phoneNumber: string;
 
-    @Prop({ trim: true, enum: ['user', 'admin'], default: 'user' })
+    @Prop({ trim: true, enum: ['user', 'admin'], default: 'user', select:false})
     role: string;
 
 
