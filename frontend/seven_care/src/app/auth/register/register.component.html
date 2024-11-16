@@ -1,0 +1,109 @@
+<div class="flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-lg flex overflow-hidden max-w-4xl w-full">
+        <!-- Left Section with Image and Logo -->
+        <div class="w-1/2 bg-cover bg-center relative" style="background-image: url('{{assetPath}}/female_doctor.png');">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-start top-0 left-0">
+                <img src="{{assetPath}}/whitelOGO.png" alt="Seven Care Logo"
+                    class="absolute  w-2/5 h-45 -left-2 max-h-80">
+
+            </div>
+        </div>
+
+        <!-- Right Section with Form -->
+        <div class="w-1/2 p-8">
+            <div class="text-right">
+                <p class="mr-4 ">Already have an account?<a href="#"
+                        class=" text-center  text-form_background_color font-bold ml-3 rounded-sm bg-medical_color"> LOG
+                        IN</a></p>
+            </div>
+            <p class="font-semibold text-gray-800 mb-6 pt-6">Please <span class="text-medical_color">Register</span> Here</p>
+            <form [formGroup]="formdata" (ngSubmit)="onSubmit()" class="space-y-4">
+                <div class="flex space-x-4">
+                    <div *ngIf="formdata.get('firstName')?.invalid && (formdata.get('firstName')?.dirty || formdata.get('firstName')?.touched)"
+                        class="absolute top-0  mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-medical_color dark:text-blue-400 dark:border-blue-800 h-9 flex items-center justify-center"
+                        role="alert">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                        </svg>
+                        <div>
+                            <span class="font-medium pl-4">First name is required.</span>
+                        </div>
+                    </div>
+
+                    <input type="text" placeholder="First Name"
+                        class="w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        id="firstName" formControlName="firstName">
+
+
+
+
+                    <div *ngIf="formdata.get('lastName')?.invalid && (formdata.get('lastName')?.dirty || formdata.get('lastName')?.touched)"
+                        class="absolute top-0 left-0 right-0 p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-medical_color dark:text-blue-400 dark:border-blue-800 h-9 w-1/2 flex items-center justify-center"
+                        role="alert">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                        </svg>
+                        <div>
+                            <span class="font-medium pl-4">Last name is required.</span>
+                        </div>
+                    </div>
+
+                    <input type="text" placeholder="Last Name"
+                        class="w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        id="lastName" formControlName="lastName">
+                </div>
+                <input type="email" placeholder="Enter Email Address"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    id="email" formControlName="email">
+                <div class="flex space-x-4">
+                    <input type="password" placeholder="Enter Password"
+                        class="w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        id="password" formControlName="password">
+                    <input type="password" placeholder="Confirm Password"
+                        class="w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        id="confirmPassword" formControlName="confirmPassword">
+                </div>
+                <input type="tel" placeholder="Enter Phone Number"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    id="phone" formControlName="phone">
+                <div class="flex space-x-4">
+                    <select
+                        class="w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        id="gender" formControlName="gender">
+                        <option>Enter Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                    <input type="date" placeholder="D.O.B"
+                        class="w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        id="dob" formControlName="dob">
+                </div>
+                <input type="text" placeholder="Enter Address"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    id="address" formControlName="address">
+
+                <h3 class="text-xl font-semibold text-medical_color mt-6">Medical History:</h3>
+                <input type="text" placeholder="List any allergies you have"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    id="allergies" formControlName="allergies">
+                <input type="text" placeholder="Specify your current medications"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    id="medications" formControlName="medications">
+                <input type="text" placeholder="Share information about your lifestyle habits"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    id="lifestyle" formControlName="lifestyle">
+                <input type="text" placeholder="Provide an emergency contact person and their details"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    id="emergencyContact" formControlName="emergencyContact">
+
+                <button type="submit" [disabled]="!formdata.valid"
+                    class="w-full font-semibold py-3 rounded-xl hover:bg-blue-700 transition duration-200 bg-medical_color text-form_background_color">REGISTER</button>
+            </form>
+        </div>
+    </div>
+</div>
