@@ -1,0 +1,280 @@
+<div class="bg-gray-100 font-sans max-h-full overflow-hidden">
+    <!-- Sidebar -->
+    <div class="flex max-h-full">
+        <aside class="w-1/5 bg-white max-h-full shadow-md overflow-hidden">
+            <div class="flex items-center space-x-3 mb-6 ml-4 mt-10">
+                <img src="{{assetPath}}/ewatomiPlaceholder.png" alt="User" class="w-15 h-10 rounded-full">
+                <div>
+                    <h2 class="text-lg font-medium">Oyinkansola Etomi</h2>
+                </div>
+            </div>
+            <nav class="flex flex-col space-y-4 ml-4">
+                <a href="#"
+                    class="flex items-center space-x-2 text-white-600 w-3/4 font-semibold bg-medical_color rounded-xl">
+                    <span class="w-1 h-10 bg-blue-600 rounded-full"></span>
+                    <span class="capitalize text-form_background_color">overview</span>
+                </a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 text-dashboard_side_nav_text_color">Book
+                    Appointment</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 text-dashboard_side_nav_text_color">Pharmacy</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 text-dashboard_side_nav_text_color">Payments</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 text-dashboard_side_nav_text_color">Contact</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 text-dashboard_side_nav_text_color">Services</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 text-dashboard_side_nav_text_color">Blog</a>
+                <hr
+                    class="h-px my-8 bg-dashboard_side_nav_text_color-300 border-0 dark:bg-dashboard_side_nav_text_color">
+                <a href="#" class="text-gray-600 hover:text-blue-600 text-dashboard_side_nav_text_color">User
+                    Profile</a>
+            </nav>
+            <div class="relative top-80 right-15 -left-10">
+                <img src="{{assetPath}}/BluelOGO.png" alt="Logo" class="">
+
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h1 class="text-2xl font-bold flex flex-col flex-wrap"><span class="text-lg font-thin capitalize">
+                            Welcome Back,</span><span class="font-medium">Oyinkansola Etomi</span></h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <input type="text" placeholder="Search"
+                        class="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <img src="{{assetPath}}/notification.png" alt="Notification Icon"
+                        class="w-8 h-8 rounded-full bg-medical_color">
+
+                </div>
+            </div>
+
+            <!-- Banner -->
+            <div class="bg-blue-600 rounded-lg p-6 text-white mb-6 bg-medical_color text-form_background_color h-55">
+                <h2 class="text-2xl ">Manage Your Healthcare Journey</h2>
+                <p class="text-sm">Schedule your next medical appointment with ease. Choose a convenient date and time.
+                </p>
+                <button
+                    class="mt-4 bg-white text-greetings_text_color font-semibold px-4 py-2 rounded-lg bg-form_background_color">Book
+                    Appointment</button>
+
+                <div class="float-right relative bottom-20 mr-40 max-w-max">
+                    <img src="{{assetPath}}/docill.png" alt="" class="w-60">
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="relative -top-10">
+                <div class="grid grid-cols-4 gap-4 mb-3 w-full">
+                    <div class="bg-white p-4 rounded-lg shadow text-center justify-center items-center flex">
+                        <div class="mr-5"><img src="{{assetPath}}/calendar.png" alt="total bookings"></div>
+                        <p class="font-semibold">Total Bookings</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow text-center justify-center items-center flex">
+                        <div class="mr-5"><img src="{{assetPath}}/success.png" alt="successful bookings"></div>
+                        <p class="font-semibold">Booking Success</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow text-center justify-center items-center flex">
+                        <div class="mr-5"><img src="{{assetPath}}/canceled.png" alt="canceled bookings"></div>
+                        <p class="font-semibold">Booking Cancel</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow text-center justify-center items-center flex">
+                        <div class="mr-5"><img src="{{assetPath}}/paid.png" alt="paid"></div>
+                        <p class="font-semibold">Paid Amount</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Appointments & Calendar -->
+            <div class="grid grid-cols-3 gap-2 mx-auto">
+                <!-- Upcoming Appointments -->
+                <div class="col-span-2 bg-white rounded-lg shadow max-h-80  w-full">
+                    <h3 class="text-lg font-medium mb-4 font-mo">Upcoming Appointment</h3>
+                    <!-- <div class="space-y-4"> -->
+
+                    <table class="table-auto w-full border-collapse  border-gray-200 rounded-lg">
+                        <thead>
+                            <tr class="bg-blue-500 text-white">
+                                <th class="p-1 text-left">Profile</th>
+                                <th class="p-1 text-left">Service</th>
+                                <th class="p-1 text-left">Date</th>
+                                <th class="p-1 text-left">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="">
+                                <td class="p-2 flex items-center">
+                                    <img src="{{assetPath}}/doctor_place_holder.png" alt="Doctor Image"
+                                        class="w-10 h-10 rounded-full mr-3">
+                                    <span>Dr. Adekunle Adelakun</span>
+                                </td>
+                                <td class="p-2">Cardiologist</td>
+                                <td class="p-2">Jul 23, 2023</td>
+                                <td class="p-2">08:00 AM</td>
+                            </tr>
+                            <tr class="">
+                                <td class="p-2 flex items-center">
+                                    <img src="{{assetPath}}/doctor_place_holder.png" alt="Doctor Image"
+                                        class="w-10 h-10 rounded-full mr-3">
+                                    <span>Dr. Abasiama Etimefiok</span>
+                                </td>
+                                <td class="p-2">Urologist</td>
+                                <td class="p-2">Jul 30, 2023</td>
+                                <td class="p-2">08:00 AM</td>
+                            </tr>
+                            <tr class="">
+                                <td class="p-2 flex items-center">
+                                    <img src="{{assetPath}}/doctor_place_holder.png" alt="Doctor Image"
+                                        class="w-10 h-10 rounded-full mr-3">
+                                    <span>Dr. Dolapo Akamo</span>
+                                </td>
+                                <td class="p-2">Plastic Surgeon</td>
+                                <td class="p-2">Aug 3, 2023</td>
+                                <td class="p-2">09:00 AM</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2 flex items-center">
+                                    <img src="{{assetPath}}/doctor_place_holder.png" alt="Doctor Image"
+                                        class="w-10 h-10 rounded-full mr-3">
+                                    <span>Dr. Hameed Bakare</span>
+                                </td>
+                                <td class="p-2">Ophthalmologist</td>
+                                <td class="p-2">Sep 1, 2023</td>
+                                <td class="p-2">03:00 PM</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- <div class="flex items-center space-x-4 justify-around">
+                            <div class="-ml-10 flex items-center">
+                                <img src="{{assetPath}}/doctor_place_holder.png" alt="Doctor"
+                                    class="w-12 h-12 rounded-full mr-4">
+                                <p class="font-mono">Dr. Adekunle Adeshina</p>
+                                <p class="text-gray-600">Cardiologist</p>
+                            </div>
+                            <div class="ml-auto text-gray-500">Jul 23,
+                                2023 - 08:00 AM</div>
+                        </div>
+                        Repeat for other doctors 
+                        <div class="flex items-center space-x-4 justify-around">
+                            <div class="-ml-10 flex items-center">
+                                <img src="{{assetPath}}/doctor_place_holder.png" alt="Doctor"
+                                    class="w-12 h-12 rounded-full mr-4">
+                                <p class="font-mono">Dr. Adekunle Adeshina</p>
+                                <p class="text-gray-600">Cardiologist</p>
+                            </div>
+                            <div class="ml-auto text-gray-500">Jul 23,
+                                2023 - 08:00 AM</div>
+                        </div>
+                        <div class="flex items-center space-x-4 justify-around">
+                            <div class="-ml-10 flex items-center">
+                                <img src="{{assetPath}}/doctor_place_holder.png" alt="Doctor"
+                                    class="w-12 h-12 rounded-full mr-4">
+                                <p class="font-mono">Dr. Adekunle Adeshina</p>
+                                <p class="text-gray-600">Cardiologist</p>
+                            </div>
+                            <div class="ml-auto text-gray-500">Jul 23,
+                                2023 - 08:00 AM</div>
+                        </div> 
+                    <</div> -->
+                </div>
+
+                <!-- Calendar -->
+                <div class="bg-white p-6 rounded-lg shadow h-full  ml-6">
+                    <h3 class="text-lg font-semibold mb-4">Calendar</h3>
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-bold">July 2023</h4>
+                        <div class="flex items-center space-x-2">
+                            <button class="p-1 rounded-full bg-gray-200 hover:bg-gray-300">&lt;</button>
+                            <button class="p-1 rounded-full bg-gray-200 hover:bg-gray-300">&gt;</button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-7 gap-2 text-center">
+                        <!-- Calendar dates -->
+                        <div class="text-blue-600">23</div>
+                        <!-- Repeat for other dates as needed -->
+                    </div>
+                    <!-- ============================ -->
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-bold">July 2023</h4>
+                        <div class="flex items-center space-x-2">
+                            <button class="p-1 rounded-full bg-gray-200 hover:bg-gray-300">&lt;</button>
+                            <button class="p-1 rounded-full bg-gray-200 hover:bg-gray-300">&gt;</button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-bold">July 2023</h4>
+                        <div class="flex items-center space-x-2">
+                            <button class="p-1 rounded-full bg-gray-200 hover:bg-gray-300">&lt;</button>
+                            <button class="p-1 rounded-full bg-gray-200 hover:bg-gray-300">&gt;</button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-bold">July 2023</h4>
+                        <div class="flex items-center space-x-2">
+                            <button class="p-1 rounded-full bg-gray-200 hover:bg-gray-300">&lt;</button>
+                            <button class="p-1 rounded-full bg-gray-200 hover:bg-gray-300">&gt;</button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-bold">July 2023</h4>
+                        <div class="flex items-center space-x-2">
+                            <button class="p-1 rounded-full bg-gray-200 hover:bg-gray-300">&lt;</button>
+                            <button class="p-1 rounded-full bg-gray-200 hover:bg-gray-300">&gt;</button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-bold">July 2023</h4>
+                        <div class="flex items-center space-x-2">
+                            <button class="p-1 rounded-full bg-gray-200 hover:bg-gray-300">&lt;</button>
+                            <button class="p-1 rounded-full bg-gray-200 hover:bg-gray-300">&gt;</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Available Doctors -->
+            <div class="grid grid-cols-3 gap-6 -mt-8">
+                <div class="col-span-2 bg-white p-6 rounded-lg shadow">
+                    <!-- <div class="bg-white p-6 rounded-lg shadow mt-6"> -->
+                    <h3 class="text-lg font-medium mb-4">Available Doctors</h3>
+                    <div class="flex space-x-4 space-y-4 justify-between">
+                        <div
+                            class="flex items-center space-x-2 h-20  mt-4 shadow-lg rounded-lg w-35 ">
+                            <img src="{{assetPath}}/doctor_place_holder.png" alt="Doctor"
+                                class="w-12 h-12 rounded-full ml-1">
+                                <div>
+                                <p class="font-medium p-1">Dr.Paul Ogundipe</p>
+                                <p class="font-normal text-xs">General Surgeon</p>
+                                <p>Rating</p>
+                            </div>
+                        </div>
+                        <!-- ======================================================== -->
+                        <div
+                            class="flex items-center space-x-2 h-20  mt-4 shadow-lg rounded-lg w-35" >
+                            <img src="{{assetPath}}/doctor_place_holder.png" alt="Doctor"
+                                class="w-12 h-12 rounded-full ml-1">
+                                <div>
+                                <p class="font-medium p-1">Dr.Paul 2</p>
+                                <p class="font-normal text-xs">General Surgeon</p>
+                                <p>Rating</p>
+                            </div>
+                        </div>
+                        <!-- ======================================================== -->
+                        <div
+                            class="flex items-center space-x-2 h-20  mt-4 shadow-lg  rounded-lg w-35">
+                            <img src="{{assetPath}}/doctor_place_holder.png" alt="Doctor"
+                                class="w-12 h-12 rounded-full ml-1">
+                                <div>
+                                <p class="font-medium p-1">Dr. Paul 4</p>
+                                <p class="font-normal text-xs">General Surgeon</p>
+                                <p>Rating</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
